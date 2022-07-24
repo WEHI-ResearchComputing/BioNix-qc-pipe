@@ -1,0 +1,42 @@
+{
+  "nodes": {
+    "bionix": {
+      "locked": {
+        "lastModified": 1655591220,
+        "narHash": "sha256-A5iojDTR/uO+YsmrxDD4m1IxIXF41zEloGqRWggVyYc=",
+        "owner": "papenfusslab",
+        "repo": "bionix",
+        "rev": "f5d976e267ba18d4b5758fb0c9cfdca0f4a203f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "papenfusslab",
+        "repo": "bionix",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1658661280,
+        "narHash": "sha256-nHoWYjIHIfXIlC8LsH6DX7i7lUTKNU2t0gBLl0mT+ig=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ff56c775c82c3820ad375a1487d785fd03f12e8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "bionix": "bionix",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
