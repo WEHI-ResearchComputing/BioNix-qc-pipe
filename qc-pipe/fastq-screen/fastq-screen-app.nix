@@ -1,4 +1,6 @@
-{ stdenv, unzip, perl, fetchurl }:
+{ bionix, stdenv, unzip, perl, fetchurl }:
+
+with bionix;
 
 stdenv.mkDerivation rec {
   name = "fastq-screen-${version}";
@@ -6,12 +8,10 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/StevenWingett/FastQ-Screen/archive/refs/tags/v0.15.2.zip";
-    sha256 = "19baxr9bc58fczaszgavq6ldfdhnkrb2v4m7f5zw7isq98qbg6vh";
+    sha256 = "/kmNXj4yMSFredWVroHCzU3deGwu8fij8LWvU/gAjZ8=";
   };
 
-  buildInputs = [ unzip perl ];
-
-  phases = ["unpackPhase" "installPhase" "fixupPhase" ];
+  buildInputs = with pkgs; [ bowtie2 unzip perl ];
 
   installPhase =  ''
     install -Dm755 ./fastq_screen $out/bin/fastq_screen
