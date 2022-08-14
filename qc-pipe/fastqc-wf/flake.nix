@@ -15,6 +15,6 @@
         };
         {
           defaultPackage = callBionix ./. { };
-        };
+        }
       );
 }
