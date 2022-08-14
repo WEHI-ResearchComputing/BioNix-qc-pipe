@@ -27,4 +27,4 @@ let
   };
 
 in 
-lib.mapAttrs (_: val: fastqc.check { input = val; }) inputs
+mapAttrs (_: val: fastqc.check { input = val; }) inputs
