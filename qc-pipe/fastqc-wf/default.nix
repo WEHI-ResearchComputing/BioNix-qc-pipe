@@ -8,7 +8,7 @@ with bionix;
 with lib;
 
 let
-  inputs =
+  input =
     {
       input1 = fetchFastQ {
         url = "https://github.com/PapenfussLab/bionix/raw/master/examples/sample1-1.fq";
@@ -27,4 +27,4 @@ let
   };
 
 in 
-mapAttrs (_: val: fastqc.check { input = val; }) inputs
+fastqc.check { } input.input1 
