@@ -1,7 +1,8 @@
 { bionix
 , flags? null
-, databases ? bionix.ref.grch38.seq
+, databases 
 , inputs
+, threads ? 8
 }:
 
 with bionix;
@@ -23,7 +24,7 @@ let
         in
           attrs: concatStringsSep "\n" (flatten (recurse [] attrs));
       in 
-        with bionix; toFastQConf { DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}/ref") {grch38 = ref.grch38.seq;};};
+        with bionix; toFastQConf { THREADS = threads; DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}/ref") {Ecoli = databases.ecoli;};};
   };
 
 in stage { 
