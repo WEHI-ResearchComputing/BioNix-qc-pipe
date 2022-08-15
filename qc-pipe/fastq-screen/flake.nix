@@ -11,6 +11,7 @@
     flake-utils.lib.eachDefaultSystem
       (system: with bionix.lib
         {
+          overlays = [ (self: super: { fastq-screen = self.callBionix ./fastq-screen.nix { };})];
           nixpkgs = import nixpkgs { inherit system; };
         };
         {

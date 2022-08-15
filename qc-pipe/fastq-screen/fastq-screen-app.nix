@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/StevenWingett/FastQ-Screen/archive/refs/tags/v0.15.2.zip";
-    sha256 = "/kmNXj4yMSFredWVroHCzU3deGwu8fij8LWvU/gAjZ8=";
+    sha256 = "17wd03w57bxmy2iziw9fdiwdskfdqa0sx5fmg5mj2c9j7rg8sjgy";
   };
 
   buildInputs = with pkgs; [ bowtie2 unzip perl ];

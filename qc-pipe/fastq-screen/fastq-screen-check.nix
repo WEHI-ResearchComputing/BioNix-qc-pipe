@@ -24,12 +24,17 @@ let
         in
           attrs: concatStringsSep "\n" (flatten (recurse [] attrs));
       in 
-        with bionix; toFastQConf { THREADS = threads; DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}/ref") {Ecoli = databases.ecoli;};};
+        with bionix; toFastQConf {
+          BOWTIE2 = ''
+            autoPatchelfHook ${bowtie2}; #  (builtins.nixPath bowtie2);
+          '';
+          THREADS = {threads = 8; } ;
+          DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}") {Ecoli = databases.ecoli;};};
   };
 
 in stage { 
   name = "fastq-screen-check";
-  buildInputs = [ bionix.fastq-screen.fastq-screen ];
+  buildInputs = with pkgs; [ bionix.fastq-screen.fastq-screen bowtie2 ];
   stripStorePaths = false;
   outputs = [ "out" "zip" ];
   buildCommand = ''
