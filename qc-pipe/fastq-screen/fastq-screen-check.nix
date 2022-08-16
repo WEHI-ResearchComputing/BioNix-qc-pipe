@@ -24,7 +24,7 @@ let
         in
           attrs: concatStringsSep "\n" (flatten (recurse [] attrs));
       in with bionix; concatStringsSep "\n" [
-        "BOWTIE2 ${bowtie2}/bin"
+        "BOWTIE2 ${bowtie2}/bin/bowtie2"
         "THREADS ${toString threads}"
         "${toFastQConf {
           DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}") {Ecoli = databases.ecoli;};
@@ -35,12 +35,12 @@ in stage {
   name = "fastq-screen-check";
   buildInputs = with pkgs; [ bionix.fastq-screen.fastq-screen bowtie2 ];
   stripStorePaths = false;
-  outputs = [ "out" "zip" ];
+  outputs = [ "out" ];
   buildCommand = ''
-    mkdir -p $out/results/fastqScreen
+    mkdir -p $out/fastqScreen
     fastq_screen --aligner bowtie2 \
         --conf ${configFile} \
-        --outdir $out/results/fastqScreen \
+        --outdir $out/fastqScreen \
         ${inputs.input1} ${inputs.input2}
   '';
 }

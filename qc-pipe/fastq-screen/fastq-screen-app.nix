@@ -13,7 +13,13 @@ stdenv.mkDerivation rec {
 
   buildInputs = with pkgs; [ bowtie2 unzip perl ];
 
-  installPhase =  ''
-    install -Dm755 ./fastq_screen $out/bin/fastq_screen
+  installPhase =  '' 
+    mkdir -p $out/bin
+    install -m755 -t $out/bin \
+    ./fastq_screen \
+    ./interactive_graphs.js \
+    ./fastq_screen_summary_template.html \
+    ./FastQ_Screen_Logo.png \
+    ./OpenSans-Regular.ttf
   '';
 }
