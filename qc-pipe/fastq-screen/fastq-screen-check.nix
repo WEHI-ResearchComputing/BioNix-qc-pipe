@@ -2,7 +2,7 @@
 , flags? null
 , databases 
 , inputs
-, threads ? 8
+, threads ? 1
 }:
 
 with bionix;
@@ -20,18 +20,17 @@ let
           then mapAttrsToList (n: recurse ([n] ++ path)) value
           else if length path > 1
           then "${concatStringsSep "\t" (reverseList path)}\t${toString value}"
-          else "$(head path)\t$(toString value}";
+          else "$(head path)\t${toString value}";
         in
           attrs: concatStringsSep "\n" (flatten (recurse [] attrs));
-      in 
-        with bionix; toFastQConf {
-          BOWTIE2 = ''
-            autoPatchelfHook ${bowtie2}; #  (builtins.nixPath bowtie2);
-          '';
-          THREADS = {threads = 8; } ;
-          DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}") {Ecoli = databases.ecoli;};};
+      in with bionix; concatStringsSep "\n" [
+        "BOWTIE2 ${bowtie2}/bin"
+        "THREADS ${toString threads}"
+        "${toFastQConf {
+          DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}") {Ecoli = databases.ecoli;};
+        }}/ref"
+      ];
   };
-
 in stage { 
   name = "fastq-screen-check";
   buildInputs = with pkgs; [ bionix.fastq-screen.fastq-screen bowtie2 ];
@@ -39,7 +38,8 @@ in stage {
   outputs = [ "out" "zip" ];
   buildCommand = ''
     mkdir -p $out/results/fastqScreen
-    fastq_screen --conf ${configFile} \
+    fastq_screen --aligner bowtie2 \
+        --conf ${configFile} \
         --outdir $out/results/fastqScreen \
         ${inputs.input1} ${inputs.input2}
   '';
