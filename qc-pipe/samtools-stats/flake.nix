@@ -11,7 +11,7 @@
     flake-utils.lib.eachDefaultSystem
       (system: with bionix.lib
         {
-          overlays = [ (self: super: { samtools = self.callBionix ./samtools.nix { };})];
+          overlays = [ (self: super: { samtools-add = self.callBionix ./samtools-add.nix { };} ) ];
           nixpkgs = import nixpkgs { inherit system; };
         };
         {

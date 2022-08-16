@@ -1,4 +1,4 @@
-{ bionix }:
+{ bionix ? import <bionix> { } }:
 
 with bionix;
 with lib;
@@ -15,8 +15,8 @@ let
         url = "https://github.com/WEHIGenomicsRnD/qc-pipe/raw/main/.test/fastq/ecoli_R2.fastq.gz";
         sha256 = "122gbmi4z7apxqlbjzjad0sqzxswnppa2jvix6nhf32sfvc48d54";
       };
-    };
-  ]
+    }
+  ];
 
   # list of seq databases
   ref = fetchFastA {
@@ -24,4 +24,5 @@ let
        sha256 = "0rcph75mczwsn6q7aqcpdpj75vjd9v2insmhnf8dmcyyldz25dqi";
       };
 
-in import ./call.nix { inherit bionix inputs ref; }
+in 
+import ./call.nix { inherit bionix inputs ref; }

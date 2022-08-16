@@ -1,14 +1,15 @@
-{ bionix
+{ bionix ? import <bionix> { }
 , inputs
 , ref
 }:
 
 with bionix;
 with lib;
+with pkgs;
 
 let
   preprocess = flip pipe [
-    (samtools.stats { })
+    (samtools-add.stats { })
     (bwa.align { inherit ref; })
     (sambamba.sort { nameSort = true; })
     (samtools.fixmate { })
@@ -17,4 +18,4 @@ let
   ];
 
 in
-map preprocess inputs
+map (preprocess) inputs
