@@ -1,9 +1,9 @@
 { bionix
 , flags? null
 , databases 
-, inputs
-, threads ? 1
 }:
+
+input:
 
 with bionix;
 with lib;
@@ -25,9 +25,8 @@ let
           attrs: concatStringsSep "\n" (flatten (recurse [] attrs));
       in with bionix; concatStringsSep "\n" [
         "BOWTIE2 ${bowtie2}/bin/bowtie2"
-        "THREADS ${toString threads}"
         "${toFastQConf {
-          DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}") {Ecoli = databases.ecoli;};
+          DATABASE = lib.mapAttrs (_: s: "${bowtie.index {} s}") databases;
         }}/ref"
       ];
   };
@@ -40,7 +39,8 @@ in stage {
     mkdir -p $out/fastqScreen
     fastq_screen --aligner bowtie2 \
         --conf ${configFile} \
+        --threads $NIX_BUILD_CORES \
         --outdir $out/fastqScreen \
-        ${inputs.input1} ${inputs.input2}
+        ${input.input1} ${input.input2}
   '';
 }

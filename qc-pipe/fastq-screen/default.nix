@@ -7,7 +7,7 @@ with lib;
 
 let
   # a list of of inputs (a paired set)
-  inputs = 
+  input = 
     {
       input1 = fetchFastQGZ {
         url = "https://github.com/WEHIGenomicsRnD/qc-pipe/raw/main/.test/fastq/ecoli_R1.fastq.gz";
@@ -28,4 +28,4 @@ let
       };
     };
 
-in fastq-screen.check { inherit bionix inputs databases; } 
+in fastq-screen.check { inherit bionix databases; } input 
