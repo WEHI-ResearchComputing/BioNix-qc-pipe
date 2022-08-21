@@ -7,7 +7,7 @@ with lib;
 with pkgs;
 
 stage { 
-  name = "fastq-screen-check";
+  name = "qualimap-check";
   buildInputs = [ bionix.qualimap.qualimap ];
   stripStorePaths = false;
   outputs = [ "out" ];
@@ -17,6 +17,6 @@ stage {
         -bam ${input} \
         -outdir $out/qualimap \
         -outformat HTML \
-        -nt ${NIX_BUILD_CORES}
+        -nt $NIX_BUILD_CORES
   '';
 }
