@@ -8,7 +8,7 @@ with pkgs;
 
 stage { 
   name = "qualimap-check";
-  buildInputs = [ bionix.qualimap.qualimap ];
+  buildInputs = with pkgs; [ bionix.qualimap.qualimap ];
   stripStorePaths = false;
   outputs = [ "out" ];
   buildCommand = ''
