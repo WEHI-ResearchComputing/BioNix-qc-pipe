@@ -14,8 +14,7 @@ stdenv.mkDerivation rec {
       sha256 = "0ig001brgkafii5wigf8j82ixx24xqxca9a2dk2pcg6895pddw88";
   };
   nativeBuildInputs = [ unzip ];
-  propagatedBuildInputs = with pkgs; [ jre ];
-  buildInputs = [  r makeWrapper ];
+  buildInputs = with pkgs; [ r jre8 ];
 
   installPhase = ''
     mkdir -p $out/bin

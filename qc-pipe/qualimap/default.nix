@@ -27,7 +27,7 @@ let
   # sequence of calls
   preprocess = flip pipe [
     (bwa.align { inherit ref; })
-    (sambamba.sort { nameSort = true; })
+    (sambamba.sort { nameSort = false; })
   ];
 
 in 
