@@ -28,4 +28,4 @@ let
       };
     };
 
-in biobloom.report { inherit bionix inputs databases; } 
+in biobloom.report { inherit bionix; } databases.ecoli
