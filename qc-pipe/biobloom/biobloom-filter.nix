@@ -7,11 +7,13 @@ with lib;
 with pkgs;
 
 stage {
-  name = "biobloom-info";
+  name = "biobloom-filter";
   buildInputs = [ bionix.biobloom.biobloom ];
   stripStorePaths = false;
   outputs = [ "out" ];
   buildCommand = ''
-    ./biobloommaker -p input $input
+    mkdir -p $out/biobloomfilter
+    biobloommaker -p input ${input} \
+        -o $out/biobloomfilter
   '';
 }
