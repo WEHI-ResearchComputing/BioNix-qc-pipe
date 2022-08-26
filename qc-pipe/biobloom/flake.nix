@@ -11,12 +11,13 @@
     flake-utils.lib.eachDefaultSystem
       (system: with bionix.lib
         {
-          overlays = [ (self: super: { biobloom = self.callBionix ./biobloom.nix { };})];
+          overlays = [ (self: super: { biobloom = self.callBionix ./biobloom.nix { }; }) ];
           nixpkgs = import nixpkgs { inherit system; };
         };
-        {
-          defaultPackage = callBionix ./. { };
-        }
+      {
+        defaultPackage = callBionix ./. { };
+      }
       );
 }
+
 
