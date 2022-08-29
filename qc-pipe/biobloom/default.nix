@@ -13,6 +13,7 @@ let
         sha256 = "0rcph75mczwsn6q7aqcpdpj75vjd9v2insmhnf8dmcyyldz25dqi";
       };
     };
-
+  filter = biobloom.filter { inherit bionix; } input;
+  input = fastAFiles.ecoli;
 in
-biobloom.filter { inherit bionix; } fastAFiles.ecoli
+biobloom.categorize { inherit bionix; } { inherit filter input; }
