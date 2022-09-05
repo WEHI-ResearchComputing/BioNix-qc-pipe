@@ -5,17 +5,23 @@
     bionix.url = "github:papenfusslab/bionix";
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+    multiqc-flake.url = "github:ewels/multiqc";
   };
 
-  outputs = { self, nixpkgs, bionix, flake-utils }:
+  outputs = { self, nixpkgs, bionix, flake-utils, multiqc-flake }:
     flake-utils.lib.eachDefaultSystem
       (system: with bionix.lib
         {
-          overlays = [ (self: super: { multiqc = self.callBionix ./multiqc.nix { };})];
+          overlays = [
+            (self: super: {
+              multiqc-package = multiqc-flake.packages.${system}.default;
+              multiqc = self.callBionix ./multiqc.nix { };
+            })
+          ];
           nixpkgs = import nixpkgs { inherit system; };
         };
-        {
-          defaultPackage = callBionix ./. { };
-        }
+      {
+        defaultPackage = callBionix ./. { };
+      }
       );
 }

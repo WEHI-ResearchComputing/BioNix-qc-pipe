@@ -5,25 +5,21 @@ with lib;
 
 let
   # a list of of inputs (a paired set)
-  inputs = 
+  inputs =
     {
-      input1 = fetchFastQGZ {
-        url = "https://github.com/WEHIGenomicsRnD/qc-pipe/raw/main/.test/fastq/ecoli_R1.fastq.gz";
-        sha256 = "1zlz4c03xqi6lqkr2vkzm5h785jnx9sp956dwz4aiaij8w3jfsdb";
+      input1 = fetchFastQ {
+        url = "https://github.com/PapenfussLab/bionix/raw/master/examples/sample1-1.fq";
+        sha256 = "qE6s8hKowiz3mvCq8/7xAzUz77xG9rAcsI2E50xMAk4=";
       };
-      input2 = fetchFastQGZ {
-        url = "https://github.com/WEHIGenomicsRnD/qc-pipe/raw/main/.test/fastq/ecoli_R2.fastq.gz";
-        sha256 = "122gbmi4z7apxqlbjzjad0sqzxswnppa2jvix6nhf32sfvc48d54";
+
+      input2 = fetchFastQ {
+        url = "https://github.com/PapenfussLab/bionix/raw/master/examples/sample1-2.fq";
+        sha256 = "0czk85km6a91y0fn4b7f9q7ps19b5jf7jzwbly4sgznps7ir2kdk";
       };
     };
-
-  # list of seq databases
-  databases = 
-    { 
-      ecoli = fetchFastA {
-        url = "https://github.com/WEHIGenomicsRnD/qc-pipe/raw/main/.test/data/GCF_013166975.1_ASM1316697v1_genomic.fna";
-       sha256 = "0rcph75mczwsn6q7aqcpdpj75vjd9v2insmhnf8dmcyyldz25dqi";
-      };
+  dir = linkOutputs
+    {
+      "fastqc-report" = fastqc.check { } inputs1.input1;
     };
-
-in import ./call.nix { inherit bionix inputs databases; } 
+in
+multiqc.report { } dir
