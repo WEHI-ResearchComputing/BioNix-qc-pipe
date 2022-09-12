@@ -24,6 +24,5 @@ stdenv.mkDerivation rec {
     url = "https://github.com/bcgsc/biobloom/releases/download/2.3.5/biobloomtools-2.3.5.tar.gz";
     sha256 = "0jb73iagsk7dzfbqzpv3ac0mzzp5k1jmavbm9zb7czw6zk8c1yq3";
   };
-
   buildInputs = with pkgs; [ boost zlib.dev sparsehash sdsl ];
 }
