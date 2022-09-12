@@ -1,29 +1,32 @@
 { bionix
 , flags ? null
-, paired ? false
+, filters
 }:
 
-{ filter
-, input
-}:
+inputs:
 
 with bionix;
 with lib;
 with types;
 
 # fa/fq/compressed gz
-assert (matchFiletype "biobloomcategorizer" { fa = _: true; fq = _: true; } input);
+# assert (matchFiletype "biobloomcategorizer-input" { fa = _: true; } inputs);
 
 stage {
   name = "biobloomcategorizer";
-  buildInputs = [ bionix.biobloom.biobloom ];
+  buildInputs = [ biobloom.biobloom ];
   stripStorePaths = false;
   outputs = [ "out" ];
   buildCommand = ''
     mkdir -p $out/biobloomcategorizer
     biobloomcategorizer ${optionalString (flags != null) flags} \
-      ${optionalString (paired == true) "-e"} \
-      -f ${filter} \
-      ${input} \
+      -f ${filters} \
+      ${inputs} \
   '';
 }
+
+# mkdir -p $out/biobloomcategorizer
+# biobloomcategorizer ${optionalString (flags != null) flags} \
+#   ${optionalString (paired == true) "-e"} \
+#   -f ${filter} \
+#   ${input} \
