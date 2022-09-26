@@ -3,14 +3,13 @@
 , filters
 }:
 
-inputs:
+{ input1
+, input2 ? null
+}:
 
 with bionix;
 with lib;
 with types;
-
-# fa/fq/compressed gz
-# assert (matchFiletype "biobloomcategorizer-input" { fa = _: true; } inputs);
 
 stage {
   name = "biobloomcategorizer";
@@ -19,9 +18,16 @@ stage {
   outputs = [ "out" ];
   buildCommand = ''
     mkdir -p $out/biobloomcategorizer
-    biobloomcategorizer ${optionalString (flags != null) flags} \
-      -f ${filters} \
-      ${inputs} \
+    chmod 755 $out/biobloomcategorizer
+    ln -s ${filters.txtFile} $out/biobloomcategorizer
+    ln -s ${filters.bfFile} $out/biobloomcategorizer
+    ln -s ${input1} $out/biobloomcategorizer
+    cd $out/biobloomcategorizer
+    biobloomcategorizer \
+      ${optionalString (input2 != null) "-e"} \
+      ${optionalString (flags != null) flags} \
+      -f ${filters.bfFile} \
+      ${input1} ${optionalString (input2 != null) input2}
   '';
 }
 
