@@ -13,9 +13,9 @@
       (system: with bionix.lib
         {
           overlays = [
-            (self: super: {
+            (self: super: rec {
               multiqc-package = multiqc-flake.packages.${system}.default;
-              multiqc = self.callBionix ./multiqc.nix { };
+              multiqc = self.callBionix ./multiqc.nix { inherit multiqc-package; };
             })
           ];
           nixpkgs = import nixpkgs { inherit system; };

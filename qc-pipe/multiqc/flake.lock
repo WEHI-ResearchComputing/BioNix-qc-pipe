@@ -75,11 +75,11 @@
         "pypi": "pypi"
       },
       "locked": {
-        "lastModified": 1660810582,
-        "narHash": "sha256-878Deu4Hlj87Wv2r76AyRh9LPsw2Hxi6kdy7FUpZNpo=",
+        "lastModified": 1662835968,
+        "narHash": "sha256-jjd6ocQllB1FudoD0G8Gdwd83s1+M9ipkGCswg7ujM4=",
         "owner": "ewels",
         "repo": "multiqc",
-        "rev": "888dc38fceec2e3bde72ff938136d02abdd417c5",
+        "rev": "81dd59cb6f582bf198e3058b02996d39b02b8175",
         "type": "github"
       },
       "original": {
@@ -119,11 +119,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1661941323,
-        "narHash": "sha256-IB1hfje9mOpntkvqQxn0jWhJC/L26zMsX/Tx3vIM0eU=",
+        "lastModified": 1663634720,
+        "narHash": "sha256-wMYXWKgysznBUHmvq5fN0uzUTNpnBLREPupM17xP8MY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "757f3a19bc35c9b600ebcaad01763827948eedae",
+        "rev": "998f0f7924198b2460458728de59fe738997f28e",
         "type": "github"
       },
       "original": {
