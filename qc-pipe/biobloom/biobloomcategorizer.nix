@@ -1,6 +1,6 @@
 { bionix
 , flags ? null
-, filters
+, filter
 }:
 
 { input1
@@ -17,22 +17,13 @@ stage {
   stripStorePaths = false;
   outputs = [ "out" ];
   buildCommand = ''
-    mkdir -p $out/biobloomcategorizer
-    chmod 755 $out/biobloomcategorizer
-    ln -s ${filters.txtFile} $out/biobloomcategorizer
-    ln -s ${filters.bfFile} $out/biobloomcategorizer
-    ln -s ${input1} $out/biobloomcategorizer
-    cd $out/biobloomcategorizer
     biobloomcategorizer \
+      -t $NIX_BUILD_CORES \
       ${optionalString (input2 != null) "-e"} \
       ${optionalString (flags != null) flags} \
-      -f ${filters.bfFile} \
+      -f ${filter}/filter.bf \
       ${input1} ${optionalString (input2 != null) input2}
+    cp _summary.tsv $out
   '';
+  passthru.multicore = true;
 }
-
-# mkdir -p $out/biobloomcategorizer
-# biobloomcategorizer ${optionalString (flags != null) flags} \
-#   ${optionalString (paired == true) "-e"} \
-#   -f ${filter} \
-#   ${input} \

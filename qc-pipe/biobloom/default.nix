@@ -25,21 +25,6 @@ let
         sha256 = "122gbmi4z7apxqlbjzjad0sqzxswnppa2jvix6nhf32sfvc48d54";
       };
     };
-  filters =
-    {
-      bfFile = fetchurl
-        {
-          url = "https://github.com/victorwkb/test-workflows/blob/main/qc-pipe/biobloom/ecoli.bf";
-          sha256 = "B0ZCxSza8RFZyE7o+7KmA/mlrLRiNkc/3rQ6rVQKRdI=";
-        };
-      txtFile = fetchurl
-        {
-          url = "https://github.com/victorwkb/test-workflows/blob/main/qc-pipe/biobloom/ecoli.txt";
-          sha256 = "mHaww0zE1QJXpXmeafoPrpBoBoDHz24rZINOCWDBsR4=";
-        };
-    };
+  filter = biobloom.filter { } inputs.ecoli;
 in
-biobloom.categorize { inherit filters; } { input1 = fq.input1; }
-#biobloom.categorize { inherit filters; } { input1 = fq.input1; input2 = fq.input2; }
-#biobloom.filter { prefix = "ecoli"; } inputs.ecoli
-
+biobloom.categorize { inherit filter; } { input1 = fq.input1; }
