@@ -5,7 +5,6 @@ desired_false_positve_rate=0.0078125
 number_of_hash_functions=7
 expected_num_entries=4529389
 sequence_sources=/nix/store/42bmcrxlf97i4jiff0hwv6cm00f0y222-GCF_013166975.1_ASM1316697v1_genomic.fna 
-
 [runtime_options]
 size=45741696
 num_entries=4432581
