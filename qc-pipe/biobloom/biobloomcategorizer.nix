@@ -1,16 +1,15 @@
 { bionix
 , flags ? null
-, filters
+, filter
 }:
 
-inputs:
+{ input1
+, input2 ? null
+}:
 
 with bionix;
 with lib;
 with types;
-
-# fa/fq/compressed gz
-# assert (matchFiletype "biobloomcategorizer-input" { fa = _: true; } inputs);
 
 stage {
   name = "biobloomcategorizer";
@@ -18,15 +17,13 @@ stage {
   stripStorePaths = false;
   outputs = [ "out" ];
   buildCommand = ''
-    mkdir -p $out/biobloomcategorizer
-    biobloomcategorizer ${optionalString (flags != null) flags} \
-      -f ${filters} \
-      ${inputs} \
+    biobloomcategorizer \
+      -t $NIX_BUILD_CORES \
+      ${optionalString (input2 != null) "-e"} \
+      ${optionalString (flags != null) flags} \
+      -f ${filter}/filter.bf \
+      ${input1} ${optionalString (input2 != null) input2}
+    cp _summary.tsv $out
   '';
+  passthru.multicore = true;
 }
-
-# mkdir -p $out/biobloomcategorizer
-# biobloomcategorizer ${optionalString (flags != null) flags} \
-#   ${optionalString (paired == true) "-e"} \
-#   -f ${filter} \
-#   ${input} \

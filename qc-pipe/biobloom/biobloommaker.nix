@@ -1,6 +1,5 @@
 { bionix
 , flags ? null
-, prefix ? "filterID"
 }:
 
 inputs:
@@ -18,9 +17,10 @@ stage {
   stripStorePaths = false;
   outputs = [ "out" ];
   buildCommand = ''
-    mkdir -p $out/filter
-    biobloommaker -p ${prefix} ${optionalString (flags != null) flags} ${fafq inputs} \
+    mkdir -p $out
+    biobloommaker -p filter ${optionalString (flags != null) flags} ${fafq inputs} \
       -t $NIX_BUILD_CORES \
-      -o $out/filter
+      -o $out
   '';
+  passthru.multicore = true;
 }
