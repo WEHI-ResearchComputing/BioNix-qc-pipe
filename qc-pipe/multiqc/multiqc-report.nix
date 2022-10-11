@@ -1,7 +1,7 @@
 { bionix }:
 
-# a list
-input:
+# attrs
+inputs:
 
 with bionix;
 with pkgs;
@@ -15,10 +15,8 @@ stage {
   outputs = [ "out" ];
   buildCommand = ''
     mkdir -p $out/multiQC
-    multiqc \
-      # concat a list of qc tools output files DIRECTORY
-      $input \
-      -o $out/multiQC -f
+    multiqc ${lib.concatStringsSep " " (lib.mapAttrsToList (_: val: "${val}") inputs)} \
+      --outdir $out/multiQC
   '';
 }
 #       --config ${configFile} \

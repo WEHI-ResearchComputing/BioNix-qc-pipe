@@ -2,11 +2,11 @@
   "nodes": {
     "bionix": {
       "locked": {
-        "lastModified": 1661243788,
-        "narHash": "sha256-L3db857Z86E/pHgQRJilx/uQpwIttBpDr0+SaP/Ep2Q=",
+        "lastModified": 1664157112,
+        "narHash": "sha256-llJ4nRFxMhpy+tEywH1qzwcQjIQu5DCs6z2sIgel31w=",
         "owner": "papenfusslab",
         "repo": "bionix",
-        "rev": "5107449eeb29963b98cb5b6ded6418d930590c23",
+        "rev": "81cfa50e6b345942951b68eac0e184ea025f2ae4",
         "type": "github"
       },
       "original": {
@@ -75,11 +75,11 @@
         "pypi": "pypi"
       },
       "locked": {
-        "lastModified": 1662835968,
-        "narHash": "sha256-jjd6ocQllB1FudoD0G8Gdwd83s1+M9ipkGCswg7ujM4=",
+        "lastModified": 1664298688,
+        "narHash": "sha256-ggu0pnjWe5JoMWCtQi9boHrdRbJkNVlFT2xo7lrWtkM=",
         "owner": "ewels",
         "repo": "multiqc",
-        "rev": "81dd59cb6f582bf198e3058b02996d39b02b8175",
+        "rev": "6397a6252c7a52440fa3c7c3dd0ce6fe6cfecb47",
         "type": "github"
       },
       "original": {
@@ -119,11 +119,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1663634720,
-        "narHash": "sha256-wMYXWKgysznBUHmvq5fN0uzUTNpnBLREPupM17xP8MY=",
+        "lastModified": 1664763124,
+        "narHash": "sha256-ieqMsnUmqaEj5QAu8SbzIeWT+6eZGjHKcqroGAIzsuA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "998f0f7924198b2460458728de59fe738997f28e",
+        "rev": "b142555481cfcc8ebb857f591e1e47583cc28106",
         "type": "github"
       },
       "original": {

@@ -16,6 +16,11 @@
             (self: super: rec {
               multiqc-package = multiqc-flake.packages.${system}.default;
               multiqc = self.callBionix ./multiqc.nix { inherit multiqc-package; };
+              qualimap = self.callBionix ../qualimap/qualimap.nix { };
+              samtools-add = self.callBionix ../samtools-stats/samtools-add.nix { };
+              fastq-screen = self.callBionix ../fastq-screen/fastq-screen.nix { };
+              fastqc-add = self.callBionix ./fastqc-add.nix { };
+              biobloom = self.callBionix ../biobloom/biobloom.nix { };
             })
           ];
           nixpkgs = import nixpkgs { inherit system; };
