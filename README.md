@@ -12,3 +12,6 @@ FastQ-Screen always require a config file where an aligner and a list of databas
 
 ## MultiQC
 This stage is specified solely through a flake. During this process, the FastQC was slightly redefined such that the output format is detectable by MultiQC
+
+## BioBloom
+BioBloom is a tool that was not in the original QC pipeline. In my workflow, BioBloom is included to demonstrate that it can also be compiled in MultiQC's summary report.
