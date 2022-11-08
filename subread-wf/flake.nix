@@ -7,7 +7,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, bionix, flake-utils }: 
+  outputs = { self, nixpkgs, bionix, flake-utils }:
 
     flake-utils.lib.eachDefaultSystem
       (system: with bionix.lib
@@ -16,7 +16,7 @@
             inherit system;
           };
         }; {
-      defaultPackage = callBionix ./. { };
-      packages.small = callBionix ./. { small = true; };
+        defaultPackage = callBionix ./. { };
+        packages.small = callBionix ./. { small = true; };
       });
 }
