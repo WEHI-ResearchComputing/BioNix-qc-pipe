@@ -1,6 +1,7 @@
 # QC-pipe in BioNix
 
-This repository aims to wrap a Snakemake pipeline for generating QC metrics from sequencing data into Bionix. Some bioinformatics tools such as FastQScreen, Qualimap, Samtools_stats, and MultiQC that were used in the QC-pipe and yet to be available in BioNix's tools are wrapped.
+This repository aims to wrap a Snakemake pipeline for generating QC metrics from sequencing data into Bionix, please refer to this <a href=https://github.com/WEHIGenomicsRnD/qc-pipe>repository</a> for more about the pipeline. 
+Some bioinformatics tools such as FastQScreen, Qualimap, Samtools_stats, and MultiQC that were used in the QC-pipe and yet to be available in BioNix's tools are wrapped. 
 
 The directory `subread-wf` is an example workflow that I started with, to utilise bioinformatics tools already available in BioNix.
 
