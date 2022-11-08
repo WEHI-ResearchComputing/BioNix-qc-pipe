@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = with pkgs; [ bowtie2 unzip perl ];
 
-  installPhase =  '' 
+  installPhase = '' 
     mkdir -p $out/bin
     install -m755 -t $out/bin \
     ./fastq_screen \

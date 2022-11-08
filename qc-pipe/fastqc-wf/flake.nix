@@ -8,13 +8,13 @@
   };
 
   outputs = { self, nixpkgs, bionix, flake-utils }:
-    flake-utils.lib.eachDefaultSystem 
+    flake-utils.lib.eachDefaultSystem
       (system: with bionix.lib
         {
           nixpkgs = import nixpkgs { inherit system; };
         };
-        {
-          defaultPackage = callBionix ./. { };
-        }
+      {
+        defaultPackage = callBionix ./. { };
+      }
       );
 }

@@ -3,15 +3,15 @@
 with bionix;
 let
   r = rWrapper.override {
-    packages = with rPackages; [ optparse NOISeq XML Repitools Rsamtools rtracklayer];
+    packages = with rPackages; [ optparse NOISeq XML Repitools Rsamtools rtracklayer ];
   };
-in 
+in
 stdenv.mkDerivation rec {
   name = "QualiMap-${version}";
   version = "2.2.1";
   src = fetchurl {
-      url = "https://bitbucket.org/kokonech/qualimap/downloads/qualimap_v2.2.1.zip";
-      sha256 = "0ig001brgkafii5wigf8j82ixx24xqxca9a2dk2pcg6895pddw88";
+    url = "https://bitbucket.org/kokonech/qualimap/downloads/qualimap_v2.2.1.zip";
+    sha256 = "0ig001brgkafii5wigf8j82ixx24xqxca9a2dk2pcg6895pddw88";
   };
   nativeBuildInputs = [ unzip ];
   buildInputs = with pkgs; [ r jre8 ];

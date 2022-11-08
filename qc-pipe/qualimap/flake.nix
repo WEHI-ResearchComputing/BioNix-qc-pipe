@@ -11,11 +11,11 @@
     flake-utils.lib.eachDefaultSystem
       (system: with bionix.lib
         {
-          overlays = [ (self: super: { qualimap = self.callBionix ./qualimap.nix { };})];
+          overlays = [ (self: super: { qualimap = self.callBionix ./qualimap.nix { }; }) ];
           nixpkgs = import nixpkgs { inherit system; };
         };
-        {
-          defaultPackage = callBionix ./. { };
-        }
+      {
+        defaultPackage = callBionix ./. { };
+      }
       );
 }

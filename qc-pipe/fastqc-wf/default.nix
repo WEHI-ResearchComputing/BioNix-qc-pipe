@@ -26,5 +26,5 @@ let
     sha256 = "0sy9hq8n55knfkiblam50dzaiwhrx6pv8b8l1njdn6kfj4wflz2p";
   };
 
-in 
+in
 fastqc.check { } input.input1 

@@ -6,7 +6,7 @@ with bionix;
 with lib;
 with pkgs;
 
-stage { 
+stage {
   name = "qualimap-check";
   buildInputs = with pkgs; [ bionix.qualimap.qualimap jre8 ];
   stripStorePaths = false;
@@ -19,4 +19,5 @@ stage {
         -outformat HTML \
         -nt $NIX_BUILD_CORES
   '';
+  passthru.multicore = true;
 }
